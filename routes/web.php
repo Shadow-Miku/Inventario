@@ -22,3 +22,5 @@ Route::get('/', function () {
 // Products
 Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
+
+route::get('list', [ProductController::class, 'list'])->name('list');

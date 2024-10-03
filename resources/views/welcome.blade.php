@@ -24,8 +24,10 @@
             <ul>
                 <li><b>Product: </b>{{ $product->product_name }}</li>
                 <li><b>Category: </b>{{ $product->category }}</li>
-                <li><b>Stock: </b>{{ $product->stock }}</li>
             </ul>
+            <a href="#" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}">
+                <i class="fas fa-info-circle"></i> Details
+            </a>
         </div>
         @endforeach
 
@@ -147,5 +149,57 @@
         </div>
  --}}
     </div>
+
+    @foreach ($products as $product)
+    <!-- Modal -->
+    <div class="modal fade" id="productModal{{ $product->id }}" tabindex="-1" aria-labelledby="productModalLabel{{ $product->id }}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="productModalLabel{{ $product->id }}">Product Information</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex">
+            <!-- Left Column: Info -->
+            <div class="w-50 me-3">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Full Name</label>
+                    <p>{{ $product->product_name }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Serial</label>
+                    <p>{{ $product->serial }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Category</label>
+                    <p class="text-capitalize">{{ $product->category }}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Price per unit</label>
+                    <p>{{$product->price}}</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Units in stock</label>
+                    <p>{{$product->stock}}</p>
+                </div>
+            </div>
+            <!-- Right Column: Image -->
+            <div class="w-50">
+                <label class="form-label fw-bold">Product Image</label>
+                <br>
+                <img src="{{ asset('storage/' . $product->url) }}" alt="Product Image" class="img-fluid">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+    </div>
+    @endforeach
 
 @endsection

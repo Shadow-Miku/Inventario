@@ -17,9 +17,11 @@
     width: 100%;
     height: 300px;
     margin-bottom: 1em;
+    object-fit: cover;
 }
 
 .product ul {
     list-style-type: none;
     padding: 0;
 }
+

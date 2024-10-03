@@ -17,6 +17,12 @@ class ProductController extends Controller
         return view('welcome', compact('products'));
     }
 
+    public function list()
+    {
+        $products = Product::orderBy('created_at', 'DESC')->get();
+        return view('list', compact('products'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -47,7 +53,7 @@ class ProductController extends Controller
             'url' => $imagePath ?? null
         ]);
 
-        return redirect()->route('home')->with('success', 'Product registered successfully.');
+        return redirect()->route('products.index')->with('success', 'Product registered successfully.');
     }
 
     /**
@@ -55,7 +61,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
