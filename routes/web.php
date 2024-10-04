@@ -24,3 +24,5 @@ Route::get('/', [ProductController::class, 'index'])->name('products.index');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 
 route::get('list', [ProductController::class, 'list'])->name('list');
+route::put('list/update/{id}', [ProductController::class, 'update'])->name('products.update');
+route::delete('list/destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');

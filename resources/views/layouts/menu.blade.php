@@ -22,7 +22,7 @@
 <body>
     <!-- TOP MENU -->
     <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">F.R.E.S.H</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,17 +33,18 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ url('list') }}">List</a>
                         </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- Botón de navegación para abrir el modal -->
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#registerProductModal">Register product</a>
+                        <li class="nav-item register-product">
+                            <a class="btn btn-outline-success btn-sm create-product-btn" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#registerProductModal">Register product</a>
                         </li>
-
                     </ul>
                 </div>
+
             </div>
         </nav>
 
@@ -74,7 +75,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="price" class="form-label">Price</label>
-                                <input type="text" class="form-control" id="price" name="price" required>
+                                <input type="number" step=".25" class="form-control" id="price" name="price" required>
                             </div>
                             <div class="mb-3">
                                 <label for="stock" class="form-label">Stock</label>
