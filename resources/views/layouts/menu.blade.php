@@ -36,11 +36,14 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ url('list') }}">List</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ url('providers') }}">Providers</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- Botón de navegación para abrir el modal -->
                         <li class="nav-item register-product">
-                            <a class="btn btn-outline-success btn-sm create-product-btn" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#registerProductModal">Register product</a>
+                            <a class="btn btn-outline-success btn-sm create-product-btn" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#registerProductModal">Register product <i class="bi bi-journal-plus"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -62,28 +65,28 @@
                         @csrf
                         <div class="w-30 me-4">
                             <div class="mb-3">
-                                <label for="product_name" class="form-label">Product Name</label>
+                                <label for="product_name" class="form-label" style="font-weight: bold;">Product Name</label>
                                 <input type="text" class="form-control" id="product_name" name="product_name" required>
                             </div>
                             <div class="mb-3">
-                                <label for="serial" class="form-label">Serial</label>
+                                <label for="serial" class="form-label" style="font-weight: bold;">Serial</label>
                                 <input type="text" class="form-control" id="serial" name="serial" required>
                             </div>
                             <div class="mb-3">
-                                <label for="category" class="form-label">Category</label>
+                                <label for="category" class="form-label" style="font-weight: bold;">Category</label>
                                 <input type="text" class="form-control" id="category" name="category" required>
                             </div>
                             <div class="mb-3">
-                                <label for="price" class="form-label">Price</label>
+                                <label for="price" class="form-label" style="font-weight: bold;">Price</label>
                                 <input type="number" step=".25" class="form-control" id="price" name="price" required>
                             </div>
                             <div class="mb-3">
-                                <label for="stock" class="form-label">Stock</label>
+                                <label for="stock" class="form-label" style="font-weight: bold;">Stock</label>
                                 <input type="number" class="form-control" id="stock" name="stock" required>
                             </div>
 
                             <div class="mb-3">
-                                <label for="url" class="block text-sm font-medium leading-6 text-gray-900">Image</label>
+                                <label for="url" class="block text-sm font-medium leading-6 text-gray-900" style="font-weight: bold;">Image</label>
                                 <div class="mt-2">
                                     <input type="file" id="url" name="url" class="block w-full text-gray-900" onchange="previewImage(this)">
                                 </div>

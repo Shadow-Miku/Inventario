@@ -26,7 +26,7 @@
                 <li><b>Category: </b>{{ $product->category }}</li>
             </ul>
             <a href="#" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#productModal{{ $product->id }}">
-                <i class="fas fa-info-circle"></i> Details
+                <i class="bi bi-file-earmark-richtext"></i> Details
             </a>
         </div>
         @endforeach
@@ -163,12 +163,12 @@
             <!-- Left Column: Info -->
             <div class="w-50 me-3">
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Full Name</label>
+                    <label class="form-label fw-bold">Product Name</label>
                     <p>{{ $product->product_name }}</p>
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Serial</label>
+                    <label class="form-label fw-bold">Serial number</label>
                     <p>{{ $product->serial }}</p>
                 </div>
 
@@ -191,7 +191,7 @@
             <div class="w-50">
                 <label class="form-label fw-bold">Product Image</label>
                 <br>
-                <img src="{{ asset('storage/' . $product->url) }}" alt="Product Image" class="img-fluid">
+                <img src="{{ asset('storage/' . $product->url) }}" alt="Product Image" class="img-fluid rounded border">
             </div>
         </div>
         <div class="modal-footer">

@@ -39,7 +39,7 @@
     </div>
     @endif
 
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover text-center">
         <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
@@ -57,7 +57,7 @@
             <td>
                 <!-- Update button -->
                 <a href="#"
-                   class="btn btn-outline-primary btn-sm update-product-btn"
+                   class="btn btn-outline-primary btn-sm update-product-btn me-2"
                    data-bs-toggle="modal"
                    data-bs-target="#updateProductModal"
                    data-id="{{ $product->id }}"
@@ -67,14 +67,15 @@
                    data-price="{{ $product->price }}"
                    data-stock="{{ $product->stock }}"
                    data-url="{{ asset('storage/' . $product->url) }}">
-                   Update product
+                   Update product <i class="bi bi-pencil-square"></i>
                 </a>
 
                 <!-- Delete button -->
                 <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?')" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete <i class="bi bi-trash"></i></button>
+
                 </form>
             </td>
         </tr>
@@ -98,8 +99,8 @@
                         <div class="row g-3">
                             <!-- Left Column: Form -->
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="update_product_name" class="form-label" style="font-weight: bold;">Name</label>
+                                <div class="mb-3"> <!-- Estructura de js, name: base de datos, id: para js -->
+                                    <label for="update_product_name" class="form-label" style="font-weight: bold;">Product Name</label>
                                     <input type="text" name="product_name" id="update_product_name" class="form-control" required>
                                 </div>
 

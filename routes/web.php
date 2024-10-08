@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,9 @@ Route::post('/products/store', [ProductController::class, 'store'])->name('produ
 route::get('list', [ProductController::class, 'list'])->name('list');
 route::put('list/update/{id}', [ProductController::class, 'update'])->name('products.update');
 route::delete('list/destroy/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+
+// Providers
+route::get('/providers',[ProviderController::class, 'index'])->name('providers');
+route::post('/providers/store',[ProviderController::class, 'store'])->name('providers.store');
+route::delete('/providers/destroy/{id}',[ProviderController::class, 'destroy'])->name('providers.destroy');
