@@ -56,7 +56,11 @@ class ProviderController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $provider = Provider::findOrFail($id);
+
+        $provider->update($request->all());
+
+        return redirect()->back()->with('updated', 'Provider updated successfully');
     }
 
     /**

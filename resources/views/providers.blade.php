@@ -63,7 +63,20 @@
                 {{-- <span class="badge bg-info">{{ $provider->phone }}</span> --}}
             </td>
             <td>
-                {{-- <a class="btn btn-outline-primary btn-sm" href="{{ route('providers.edit', $provider->id) }}">Edit <i class="bi bi-pencil"></i></a> --}}
+                <!-- Update button -->
+                <a href="#"
+                   class="btn btn-outline-primary btn-sm update-product-btn me-2"
+                   data-bs-toggle="modal"
+                   data-bs-target="#changeProviderModal"
+                   data-id="{{ $provider->id }}"
+                   data-name="{{ $provider->provider_name }}"
+                   data-email="{{ $provider->email }}"
+                   data-address="{{ $provider->address }}"
+                   data-phone="{{ $provider->phone }}">
+                   Update provider <i class="bi bi-pencil-square"></i>
+                </a>
+
+                <!-- Delete button -->
                 <form action="{{ route('providers.destroy', $provider->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -123,6 +136,47 @@
     </div>
 </div>
 
+<!-- Modal Update Provider -->
+<div class="modal fade" id="changeProviderModal" tabindex="-1" aria-labelledby="changeProviderLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Register Provider</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+                <form id="changeProviderForm" action="" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="row g-3">
+                            <div class="mb-3"> <!-- Estructura de js, name: base de datos, id: para js -->
+                                <label for="update_provider_name" class="form-label" style="font-weight: bold;">Provider Name</label>
+                                <input type="text" name="provider_name" id="update_provider_name" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="update_email" class="form-label" style="font-weight: bold;">Email</label>
+                                <input type="text" name="email" id="update_email" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="update_address" class="form-label" style="font-weight: bold;">Address</label>
+                                <input type="text" name="address" id="update_address" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="update_phone" class="form-label" style="font-weight: bold;">Cellphone</label>
+                                <input type="cellphone" name="phone" id="update_phone" class="form-control" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary"> Register </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal Contact Provider -->
 <div class="modal fade" id="contactProviderModal" tabindex="-1" aria-labelledby="contactProviderLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -152,7 +206,32 @@
 </div>
 
 <script>
-// Contactar a proveedores registrados
+
+document.addEventListener('DOMContentLoaded', function() {
+            const updateModal = document.getElementById('changeProviderModal');
+            updateModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget; // Botón que abrió el modal
+                const id = button.getAttribute('data-id');
+                const prov_name = button.getAttribute('data-name');
+                const email = button.getAttribute('data-email');
+                const address = button.getAttribute('data-address');
+                const phone = button.getAttribute('data-phone');
+
+                // Actualiza la acción del formulario
+                const form = document.getElementById('changeProviderForm');
+                form.action = `/providers/update/${id}`;
+
+                // Rellena los campos del formulario
+                document.getElementById('update_provider_name').value = prov_name;
+                document.getElementById('update_email').value = email;
+                document.getElementById('update_address').value = address;
+                document.getElementById('update_phone').value = phone;
+            });
+        });
+
+
+//      Contactar a proveedores registrados
+
 // Detectar cuando se abre el modal
 document.getElementById('contactProviderModal').addEventListener('show.bs.modal', function (event) {
     // Botón que abrió el modal

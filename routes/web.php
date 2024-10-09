@@ -32,4 +32,5 @@ route::delete('list/destroy/{id}', [ProductController::class, 'destroy'])->name(
 // Providers
 route::get('/providers',[ProviderController::class, 'index'])->name('providers');
 route::post('/providers/store',[ProviderController::class, 'store'])->name('providers.store');
+route::put('/providers/update/{id}',[ProviderController::class, 'update'])->name('providers.update');
 route::delete('/providers/destroy/{id}',[ProviderController::class, 'destroy'])->name('providers.destroy');
