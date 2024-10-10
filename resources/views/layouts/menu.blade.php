@@ -86,9 +86,9 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="url" class="block text-sm font-medium leading-6 text-gray-900" style="font-weight: bold;">Image</label>
+                                <label for="url" class="form-label" style="font-weight: bold;">Image</label>
                                 <div class="mt-2">
-                                    <input type="file" id="url" name="url" class="block w-full text-gray-900" onchange="previewImage(this)">
+                                    <input type="file" id="url" name="url" class="form-control" onchange="previewImage(this)">
                                 </div>
                             </div>
                         </div>

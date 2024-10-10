@@ -63,32 +63,45 @@
                 {{-- <span class="badge bg-info">{{ $provider->phone }}</span> --}}
             </td>
             <td>
-                <!-- Update button -->
-                <a href="#"
-                   class="btn btn-outline-primary btn-sm update-product-btn me-2"
-                   data-bs-toggle="modal"
-                   data-bs-target="#changeProviderModal"
-                   data-id="{{ $provider->id }}"
-                   data-name="{{ $provider->provider_name }}"
-                   data-email="{{ $provider->email }}"
-                   data-address="{{ $provider->address }}"
-                   data-phone="{{ $provider->phone }}">
-                   Update provider <i class="bi bi-pencil-square"></i>
-                </a>
+                <!-- Grupo de Botones -->
+                <div class="btn-group" role="group" aria-label="Acciones de proveedor">
+                    <!-- Update button -->
+                    <button type="button"
+                            class="btn btn-outline-primary btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#changeProviderModal"
+                            data-id="{{ $provider->id }}"
+                            data-name="{{ $provider->provider_name }}"
+                            data-email="{{ $provider->email }}"
+                            data-address="{{ $provider->address }}"
+                            data-phone="{{ $provider->phone }}">
+                        <i class="bi bi-pencil-square"></i> Update
+                    </button>
 
-                <!-- Delete button -->
-                <form action="{{ route('providers.destroy', $provider->id) }}" method="POST">
+                    <!-- Request button -->
+                    <button type="button"
+                            class="btn btn-outline-success btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#contactProviderModal"
+                            data-provider-id="{{ $provider->id }}"
+                            data-provider-phone="{{ $provider->phone }}">
+                        <i class="bi bi-whatsapp"></i> Request
+                    </button>
+
+                    <!-- Delete button -->
+                    <button type="button"
+                            class="btn btn-outline-danger btn-sm btn-delete-provider"
+                            data-id="{{ $provider->id }}">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                </div>
+
+                <!-- Formulario de eliminación oculto -->
+                <form id="delete-form-{{ $provider->id }}" action="{{ route('providers.destroy', $provider->id) }}" method="POST" style="display:none;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete <i class="bi bi-trash"></i></button>
                 </form>
-                <a class="btn btn-outline-success btn-sm" href="#"
-                   data-bs-toggle="modal"
-                   data-bs-target="#contactProviderModal"
-                   data-provider-id="{{ $provider->id }}"
-                   data-provider-phone="{{ $provider->phone }}">
-                   Request <i class="bi bi-whatsapp"></i>
-                </a>
+
             </td>
         </tr>
         @endforeach
@@ -206,6 +219,25 @@
 </div>
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+        // Agrega un evento a cada botón de eliminar
+        document.querySelectorAll('.btn-delete-provider').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                // Obtener el ID del proveedor desde el atributo data-id
+                const providerId = event.target.getAttribute('data-id');
+
+                // Confirmación antes de eliminar
+                const confirmDelete = confirm('¿Estás seguro de eliminar este proveedor?');
+
+                if (confirmDelete) {
+                    // Enviar el formulario correspondiente
+                    const form = document.getElementById('delete-form-' + providerId);
+                    form.submit();
+                }
+            });
+        });
+    });
 
 document.addEventListener('DOMContentLoaded', function() {
             const updateModal = document.getElementById('changeProviderModal');

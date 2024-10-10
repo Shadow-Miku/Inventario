@@ -55,27 +55,35 @@
             <td>{{ $product->product_name }}</td>
             <td>{{ $product->category }}</td>
             <td>
-                <!-- Update button -->
-                <a href="#"
-                   class="btn btn-outline-primary btn-sm update-product-btn me-2"
-                   data-bs-toggle="modal"
-                   data-bs-target="#updateProductModal"
-                   data-id="{{ $product->id }}"
-                   data-name="{{ $product->product_name }}"
-                   data-serial="{{ $product->serial }}"
-                   data-category="{{ $product->category }}"
-                   data-price="{{ $product->price }}"
-                   data-stock="{{ $product->stock }}"
-                   data-url="{{ asset('storage/' . $product->url) }}">
-                   Update product <i class="bi bi-pencil-square"></i>
-                </a>
+                <!-- Grupo de botones -->
+                <div class="btn-group" role="group" aria-label="Acciones de producto">
+                    <!-- Update button -->
+                    <a href="#"
+                       class="btn btn-outline-primary btn-sm update-product-btn"
+                       data-bs-toggle="modal"
+                       data-bs-target="#updateProductModal"
+                       data-id="{{ $product->id }}"
+                       data-name="{{ $product->product_name }}"
+                       data-serial="{{ $product->serial }}"
+                       data-category="{{ $product->category }}"
+                       data-price="{{ $product->price }}"
+                       data-stock="{{ $product->stock }}"
+                       data-url="{{ asset('storage/' . $product->url) }}">
+                       Update <i class="bi bi-pencil-square"></i>
+                    </a>
 
-                <!-- Delete button -->
-                <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?')" class="d-inline">
+                    <!-- Delete button -->
+                    <button type="button"
+                            class="btn btn-outline-danger btn-sm btn-delete-product"
+                            data-id="{{ $product->id }}">
+                        Delete <i class="bi bi-trash"></i>
+                    </button>
+                </div>
+
+                <!-- Formulario de eliminación oculto -->
+                <form id="delete-product-form-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: none;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete <i class="bi bi-trash"></i></button>
-
                 </form>
             </td>
         </tr>
@@ -148,6 +156,25 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        // Agrega un evento a cada botón de eliminar producto
+        document.querySelectorAll('.btn-delete-product').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                // Obtener el ID del producto desde el atributo data-id
+                const productId = button.getAttribute('data-id');
+
+                // Confirmación antes de eliminar
+                const confirmDelete = confirm('Are you sure you want to delete this product?');
+
+                if (confirmDelete) {
+                    // Enviar el formulario correspondiente
+                    const form = document.getElementById('delete-product-form-' + productId);
+                    form.submit();
+                }
+            });
+        });
+    });
+
         function previewImage2(input) {
             const file = input.files[0];
             const preview = document.getElementById('update_imagePreview2');
