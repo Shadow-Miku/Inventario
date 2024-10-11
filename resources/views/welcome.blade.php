@@ -32,6 +32,15 @@
                    data-product='@json($product)'>
                    <i class="bi bi-file-earmark-richtext"></i> Details
                 </a>
+                <!-- Formulario para agregar al carrito -->
+                <form action="{{ route('cart.add') }}" method="POST" class="mt-2">
+                    @csrf
+                    <input type="hidden" name="producto_id" value="{{ $product->id }}">
+                    <div class="input-group input-group-sm">
+                        <input type="number" name="cantidad" value="1" min="1" max="{{ $product->stock }}" class="form-control" required>
+                        <button type="submit" class="btn btn-primary">Agregar al Carrito</button>
+                    </div>
+                </form>
             </div>
         @endforeach
     </div>

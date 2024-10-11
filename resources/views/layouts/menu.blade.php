@@ -39,7 +39,18 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ url('providers') }}">Providers</a>
                         </li>
+
+                        <!-- Botón de navegación para abrir el carrito -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('cart') }}">
+                                <i class="bi bi-cart"></i> Carrito
+                                @if(session('cart'))
+                                    <span class="badge bg-secondary">{{ count(session('cart')) }}</span>
+                                @endif
+                            </a>
+                        </li>
                     </ul>
+
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <!-- Botón de navegación para abrir el modal -->
                         <li class="nav-item register-product">

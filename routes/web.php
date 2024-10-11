@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\CartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +36,13 @@ route::get('/providers',[ProviderController::class, 'index'])->name('providers')
 route::post('/providers/store',[ProviderController::class, 'store'])->name('providers.store');
 route::put('/providers/update/{id}',[ProviderController::class, 'update'])->name('providers.update');
 route::delete('/providers/destroy/{id}',[ProviderController::class, 'destroy'])->name('providers.destroy');
+
+//Carrito
+
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
