@@ -57,12 +57,6 @@ Enhanced User Experience
     
     Tables and action buttons are visually optimized for a cleaner and more intuitive layout.
 
-
-## Authors
-
-- [@Shadow-Miku](https://github.com/Shadow-Miku)
-
-
 ## Screenshots
 Main Page
 
@@ -87,3 +81,7 @@ Shoping Cart
 Empty Shoping Cart
 
 ![App Screenshot](https://i.pinimg.com/originals/df/04/ef/df04efa5bf82035351d50613995d8684.jpg)
+
+## Authors
+
+- [@Shadow-Miku](https://github.com/Shadow-Miku)
